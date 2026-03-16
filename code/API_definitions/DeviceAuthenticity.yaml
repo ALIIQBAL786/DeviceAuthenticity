@@ -37,8 +37,8 @@ info:
 
     # Relevant terms and definitions
 
-    ### IMEI Fraud Check API service endpoint
-    The URL pointing to the RESTful resource of the IMEI Fraud Check API.
+    ### DeviceAuthenticity API service endpoint
+    The URL pointing to the RESTful resource of the DeviceAuthenticity API.
 
     ### International Mobile Equipment Identity (IMEI)
     A unique 15-digit identifier assigned to mobile devices by the manufacturer, used to identify the device on mobile networks.
@@ -77,8 +77,12 @@ info:
 
     The operational status is determined based on register presence:
     1. If the device is on the **blocked list**: status is "blocked" (regardless of other lists)
-    2. If the device is on the **blacklisted list** and not on blocked list: status is "blacklisted"
+    2. If the device is on the **blacklisted list** and not on the blocked list: status is "blacklisted"
     3. If the device is only on the **lost list**: status is "lost"
+    4. If the device is restricted for regulatory reasons, the status is "regulatory"
+    5. If the device is blocked due to non-payment, the status is "non-payment"
+    6. If the device is flagged for fraud, the status is "fraud"
+    7. If the device is on the **stolen list**: status is "stolen"
     4. If the device is not on any list: status is "unknown"
 
     ## Error handling
@@ -134,7 +138,7 @@ info:
 
 
 servers:
-  - url: "{apiRoot}/imei-fraud-check/vwip"
+  - url: "{apiRoot}/device-authenticity/vwip"
     variables:
       apiRoot:
         default: https://api.example.com
@@ -154,7 +158,7 @@ paths:
         - IMEI Fraud Check
       security:
         - openId:
-            - imei-fraud-check:check-status
+            - device-authenticity:check-status
       parameters:
         - $ref: "#/components/parameters/x-correlator"
 
