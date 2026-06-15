@@ -470,7 +470,6 @@ components:
       required:
         - imei
         - operationalStatus
-        - reportedDate
       properties:
         imei:
           type: string
