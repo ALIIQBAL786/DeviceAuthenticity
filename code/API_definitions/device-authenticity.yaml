@@ -153,6 +153,7 @@ info:
   x-camara-commonalities: 0.9
 
 externalDocs:
+  description: Product documentation at CAMARA
   url: https://github.com/camaraproject/DeviceAuthenticity
 
 servers:
